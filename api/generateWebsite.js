@@ -2,13 +2,13 @@ import * as Sentry from "@sentry/node";
 import { authenticateUser } from "./_apiUtils.js";
 
 Sentry.init({
-  dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
-  environment: process.env.VITE_PUBLIC_APP_ENV,
+  dsn: process.env.SENTRY_DSN,
+  environment: process.env.APP_ENV,
 });
 
 Sentry.configureScope(function(scope) {
   scope.setTag("type", "backend");
-  scope.setTag("projectId", process.env.VITE_PUBLIC_APP_ID);
+  scope.setTag("projectId", process.env.APP_ID);
 });
 
 export default async function handler(req, res) {
@@ -29,7 +29,7 @@ export default async function handler(req, res) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${process.env.OPENAI_API_KEY}`,
+        "Authorization": `Bearer ${process.env.OPENAI_API_KEY}`,
       },
       body: JSON.stringify({
         model: "gpt-4",

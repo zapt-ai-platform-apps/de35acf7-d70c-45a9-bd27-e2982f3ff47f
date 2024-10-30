@@ -21,19 +21,12 @@ New App is a professional AI-powered website builder that leverages artificial i
 4. **Loading State**: The app displays a loading indicator while processing the request.
 5. **View Results**: The generated website template appears in the preview area.
 
-### 3. Customize Website Content
+### 3. View Generated Code
 
-1. **Edit Sections**: Users can interact with different sections of the template (note: detailed customization is beyond current functionality).
-2. **Real-Time Preview**: Any changes would be reflected in the preview area.
-3. **Add Sections**: Users can conceptualize adding new sections (future feature).
-4. **Undo Changes**: Ability to undo or redo recent changes (future feature).
-
-### 4. Export Website
-
-1. **Finalize Design**: Once satisfied with the generated template, users can view the HTML and CSS code.
+1. **Access Code**: Scroll down to view the HTML and CSS code of the generated website.
 2. **Copy Code**: Users can copy the generated code for personal use or deployment.
 
-### 5. Sign Out
+### 4. Sign Out
 
 1. **Access Menu**: Click on the "Sign Out" button in the top-right corner.
 2. **Sign Out**: The app signs the user out and returns to the sign-in page.
@@ -46,10 +39,13 @@ New App is a professional AI-powered website builder that leverages artificial i
 
 ## Environment Variables
 
-- `VITE_PUBLIC_APP_ID`: Your app's public ID.
-- `VITE_PUBLIC_SENTRY_DSN`: Sentry Data Source Name for error logging.
-- `VITE_PUBLIC_APP_ENV`: The current environment (e.g., development, production).
+- `APP_ID`: Your app's ID.
+- `SENTRY_DSN`: Sentry Data Source Name for error logging.
+- `APP_ENV`: The current environment (e.g., development, production).
 - `OPENAI_API_KEY`: API key for accessing the OpenAI services.
+- `VITE_PUBLIC_APP_ID`: Your app's public ID.
+- `VITE_PUBLIC_SENTRY_DSN`: Sentry DSN for frontend error logging.
+- `VITE_PUBLIC_APP_ENV`: The current environment for the frontend.
 
 ## Requirements
 
