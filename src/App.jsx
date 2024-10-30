@@ -23,7 +23,7 @@ function App() {
   onMount(checkUserSignedIn);
 
   createEffect(() => {
-    const authListener = supabase.auth.onAuthStateChange((_, session) => {
+    const { data: authListener } = supabase.auth.onAuthStateChange((_, session) => {
       if (session?.user) {
         setUser(session.user);
         setCurrentPage("homePage");
@@ -34,7 +34,7 @@ function App() {
     });
 
     return () => {
-      authListener.data.unsubscribe();
+      authListener.subscription.unsubscribe();
     };
   });
 
@@ -48,7 +48,9 @@ function App() {
     if (!prompt()) return;
     setLoading(true);
     try {
-      const { data: { session } } = await supabase.auth.getSession();
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
       const response = await fetch("/api/generateWebsite", {
         method: "POST",
         headers: {
@@ -155,9 +157,7 @@ function App() {
 
           <div class="mt-4">
             <Show when={generatedCode()}>
-              <h2 class="text-2xl font-bold mb-4 text-purple-600">
-                Generated Code
-              </h2>
+              <h2 class="text-2xl font-bold mb-4 text-purple-600">Generated Code</h2>
               <pre class="bg-gray-100 p-4 rounded-lg overflow-auto max-h-96">
                 {generatedCode()}
               </pre>

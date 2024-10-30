@@ -1,18 +1,14 @@
 import * as Sentry from "@sentry/node";
 import { authenticateUser } from "./_apiUtils.js";
-import { createRequire } from "module";
-const require = createRequire(import.meta.url);
-const fetch = require("node-fetch");
 
 Sentry.init({
   dsn: process.env.VITE_PUBLIC_SENTRY_DSN,
   environment: process.env.VITE_PUBLIC_APP_ENV,
-  initialScope: {
-    tags: {
-      type: "backend",
-      projectId: process.env.PROJECT_ID,
-    },
-  },
+});
+
+Sentry.configureScope(function(scope) {
+  scope.setTag("type", "backend");
+  scope.setTag("projectId", process.env.VITE_PUBLIC_APP_ID);
 });
 
 export default async function handler(req, res) {
